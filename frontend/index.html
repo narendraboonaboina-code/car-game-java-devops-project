@@ -1,0 +1,61 @@
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Game</title>
+  <style>
+    body {
+      margin: 0;
+      background: #1e1e1e;
+      overflow: hidden;
+    }
+
+    #road {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+
+    #car {
+      width: 50px;
+      height: 100px;
+      background: red;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      border-radius: 10px;
+    }
+
+    h3 {
+      color: white;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<h3>🚗 Car Game - Use Arrow Keys</h3>
+
+<div id="road">
+  <div id="car"></div>
+</div>
+
+<script>
+let car = document.getElementById("car");
+let x = 200;
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "ArrowLeft") {
+    x -= 20;
+  }
+  if (e.key === "ArrowRight") {
+    x += 20;
+  }
+
+  car.style.left = x + "px";
+});
+</script>
+
+</body>
+</html
