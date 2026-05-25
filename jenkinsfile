@@ -1,0 +1,33 @@
+Groovy
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/your-username/car-game-devops.git'
+            }
+        }
+
+        stage('Build Maven') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t car-game:v1 .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                sh 'docker stop car-game || true'
+                sh 'docker rm car-game || true'
+                sh 'docker run -d -p 8080:8080 --name car-game car-game:v1'
+            }
+        }
+    }
+}
